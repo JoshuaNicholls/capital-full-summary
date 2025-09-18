@@ -112,10 +112,15 @@
 % ==============================
 % THEOREM ENVIRONMENTS
 % ==============================
-% Theorems numbered by subsubsection
-\newtheorem{definition}{Definition}[subsubsection]
-\newtheorem{proposition}{Proposition}[subsubsection]
-\newtheorem{example}{Example}[subsubsection]
+% Theorems numbered by section
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+
+% Print full number: Chapter.Section.Theorem
+\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
+\renewcommand{\theproposition}{\thesection.\arabic{proposition}}
+\renewcommand{\theexample}{\thesection.\arabic{example}}
 
 % ==============================
 % DOCUMENT
@@ -193,6 +198,14 @@ The common substance that manifests itself in the exchange relation of commoditi
   \item Socially necessary labour time = labour time required under normal conditions of production and with average degree of skill and intensity prevalent at the time.
 \end{itemize}
 \end{definition}
+
+\begin{example}
+1 coat = 20 yards of linen.
+\begin{itemize}[noitemsep]
+  \item Not due to physical properties of coat or linen.
+  \item Both embody equal quantities of human labour.
+\end{itemize}
+\end{example}
 
 % ==============================
 % SECTION 1.1.2
