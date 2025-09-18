@@ -1,8 +1,104 @@
 \documentclass{article}
 \usepackage{amsthm}
-\usepackage{enumitem}
 \usepackage{titlesec}
-\usepackage{chngcntr} % for custom numbering
+\usepackage{enumitem}
+
+% ============================
+% FONT SIZES / FONTS
+% ============================
+% Define custom fonts for each level (Google Doc sizes scaled to LaTeX)
+\newcommand{\volumefont}{\fontsize{26pt}{28pt}\bfseries}
+\newcommand{\partfont}{\fontsize{20pt}{22pt}\bfseries}
+\newcommand{\chapterfont}{\fontsize{16pt}{18pt}\bfseries}
+\newcommand{\sectionfont}{\fontsize{14pt}{16pt}\bfseries}
+\newcommand{\subsectionfont}{\fontsize{12pt}{14pt}\bfseries}
+\newcommand{\subsubsectionfont}{\fontsize{11pt}{13pt}\bfseries}
+\newcommand{\subsubsubsectionfont}{\fontsize{11pt}{13pt}\itshape}
+
+
+% ============================
+% VOLUME
+% ============================
+\newcounter{volume}
+\renewcommand{\thevolume}{\Roman{volume}}
+\newcommand{\volumeheading}[1]{%
+  \refstepcounter{volume}%
+  \vspace{2ex}%
+  {\centering \volumefont Volume \thevolume: #1\par}%
+  \vspace{1ex}%
+}
+
+% ============================
+% PART
+% ============================
+\newcounter{partcustom}
+\renewcommand{\thepartcustom}{\Roman{partcustom}}
+\newcommand{\partheading}[1]{%
+  \refstepcounter{partcustom}%
+  \vspace{2ex}%
+  {\centering \partfont Part \thepartcustom: #1\par}%
+  \vspace{1ex}%
+}
+
+% ============================
+% CHAPTER
+% ============================
+\newcounter{chapter}[partcustom]
+\renewcommand{\thechapter}{\thepartcustom.\arabic{chapter}}
+\newcommand{\chapter}[1]{%
+  \refstepcounter{chapter}%
+  \vspace{2ex}%
+  {\chapterfont Chapter \thechapter: #1\par}%
+  \vspace{1ex}%
+}
+
+% ============================
+% SECTION => SUBPARAGRAPH
+% ============================
+
+% Section
+\titleformat{\section}[block]
+  {\sectionfont}
+  {\thechapter.\arabic{section}}
+  {1em}{}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+
+% Subsection
+\titleformat{\subsection}[block]
+  {\subsectionfont}
+  {\thesection.\arabic{subsection}}
+  {1em}{}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% Subsubsection
+\titleformat{\subsubsection}[block]
+  {\subsubsectionfont}
+  {\thesubsection.\arabic{subsubsection}}
+  {1em}{}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% Paragraph
+\titleformat{\paragraph}[block]
+  {\subsubsectionfont}
+  {\thesubsubsection.\arabic{paragraph}}
+  {1em}{}
+\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
+
+% Subparagraph
+\titleformat{\subparagraph}[block]
+  {\subsubsubsectionfont}
+  {\theparagraph.\arabic{subparagraph}}
+  {1em}{}
+\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
+
+% ============================
+% Spacing (optional, adjust to taste)
+% ============================
+\titlespacing*{\section}{0pt}{2ex}{1ex}
+\titlespacing*{\subsection}{0pt}{1.5ex}{0.8ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\paragraph}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subparagraph}{0pt}{1ex}{0.5ex}
 
 % ==============================
 % THEOREM ENVIRONMENTS
@@ -11,32 +107,6 @@
 \newtheorem{definition}{Definition}[subsubsection]
 \newtheorem{proposition}{Proposition}[subsubsection]
 \newtheorem{example}{Example}[subsubsection]
-
-% ==============================
-% CUSTOM NUMBERING
-% ==============================
-\renewcommand\thesubsection{\thesection.\arabic{subsection}}      % e.g. 1.1
-\renewcommand\thesubsubsection{\thesubsection.\Alph{subsubsection}} % e.g. 1.1.A
-\newcounter{subsubsubsection}[subsubsection]
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}} % e.g. 1.1.A.1
-
-% Custom commands for Marx-style manual override
-\newcommand{\customsubsubsection}[2]{%
-  \subsubsection*{#1 -- #2}%
-}
-
-\newcommand{\subsubsubsection}[1]{%
-  \refstepcounter{subsubsubsection}%
-  \paragraph{\thesubsubsubsection\quad #1}%
-}
-
-% ==============================
-% HEADINGS
-% ==============================
-\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
-\titleformat{\paragraph}[runin]{\bfseries}{\thesubsubsubsection}{1em}{} 
 
 % ==============================
 % DOCUMENT
@@ -56,28 +126,29 @@
 \end{titlepage}
 
 % === PREFACES ===
-\section*{Volume 1: The Process of Production of Capital}
+\volumeheading{1}{The Process of Production of Capital}
 
-\section*{Prefaces}
-\subsection*{1867: Marx’s thank you letter to Engels}
-\subsection*{1867: Dedication to Wilhelm Wolff}
-\subsection*{1867: Preface to the First German Edition (Marx)}
-\subsection*{Preface to the French Edition (Marx)}
-\subsection*{1873: Afterword to the Second German Edition (Marx)}
-\subsection*{1875: Afterword to the French Edition (Marx)}
-\subsection*{1883: Preface to the Third German Edition (Engels)}
-\subsection*{1886: Preface to the English Edition (Engels)}
-\subsection*{1890: Preface to the Fourth German Edition (Engels)}
+\partheading*{Prefaces}
+
+\section*{1867: Marx's thank you letter to Engels}
+\section*{1867: Dedication to Wilhelm Wolff}
+\section*{1867: Preface to the First German Edition (Marx)}
+\section*{Preface to the French Edition (Marx)}
+\section*{1873: Afterword to the Second German Edition (Marx)}
+\section*{1875: Afterword to the French Edition (Marx)}
+\section*{1883: Preface to the Third German Edition (Engels)}
+\section*{1886: Preface to the English Edition (Engels)}
+\section*{1890: Preface to the Fourth German Edition (Engels)}
 
 % === CHAPTER 1 ===
-\part{Commodities and Money}
+\partheading{Commodities and Money}
 
-\section{Ch. 1.1: The Commodities}
+\chapter{The Commodities}
 
 % ==============================
 % SECTION 1.1.1
 % ==============================
-\customsubsubsection{1.1.1A}{The Two Factors of a Commodity: Use-value and Value}
+\section{The Two Factors of a Commodity: Use-value and Value}
 
 \begin{definition}[Use-value]\label{def:1.1.1.1}
 The usefulness of a thing.
@@ -117,7 +188,7 @@ The common substance that manifests itself in the exchange relation of commoditi
 % ==============================
 % SECTION 1.1.2
 % ==============================
-\customsubsubsection{1.1.2B}{The Two-fold Character of the Labour Embodied in Commodities}
+\section{The Two-fold Character of the Labour Embodied in Commodities}
 
 \begin{proposition}[Two Aspects of Labour]\label{prop:1.1.2.1}
 The labour represented in commodities possesses a two-fold character:
@@ -153,6 +224,6 @@ The commodity-form makes visible the two-fold character of labour:
 \end{itemize}
 \end{proposition}
 
-\subsubsubsection{1} Example of a finer point under 1.1.2B.
+\subparagraph{1} Example of a finer point under 1.1.2B.
 
 \end{document}
