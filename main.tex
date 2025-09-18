@@ -29,11 +29,14 @@
 }
 
 % ============================
-% Part heading for Preface (numberless)
+% Part heading with number (independent)
 % ============================
-\newcommand{\partpreface}[1]{%
+\newcounter{partnum}                % counter for numbered parts
+\renewcommand{\thepartnum}{\Roman{partnum}}
+\newcommand{\partheading}[1]{%
+  \refstepcounter{partnum}% increments part number
   \vspace{2ex}%
-  {\centering \partfont #1\par}% prints the heading in Part-sized font
+  {\centering \partfont Part \thepartnum: #1\par}% prints number + title
   \vspace{1ex}%
 }
 
