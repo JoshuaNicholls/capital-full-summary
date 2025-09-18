@@ -29,22 +29,31 @@
 }
 
 % ============================
-% PART
+% Part heading for Preface (numberless)
 % ============================
-\newcounter{partcustom}
-\renewcommand{\thepartcustom}{\Roman{partcustom}}
-\newcommand{\partheading}[1]{%
-  \refstepcounter{partcustom}%
+\newcommand{\partpreface}[1]{%
   \vspace{2ex}%
-  {\centering \partfont Part \thepartcustom: #1\par}%
+  {\centering \partfont #1\par}% prints the heading in Part-sized font
+  \vspace{1ex}%
+}
+
+% ============================
+% Part heading with number (independent)
+% ============================
+\newcounter{partnum}                % counter for numbered parts
+\renewcommand{\thepartnum}{\Roman{partnum}}
+\newcommand{\partheading}[1]{%
+  \refstepcounter{partnum}% increments part number
+  \vspace{2ex}%
+  {\centering \partfont Part \thepartnum: #1\par}% prints number + title
   \vspace{1ex}%
 }
 
 % ============================
 % CHAPTER
 % ============================
-\newcounter{chapter}[partcustom]
-\renewcommand{\thechapter}{\thepartcustom.\arabic{chapter}}
+\newcounter{chapter}[volume]
+\renewcommand{\thechapter}{\thevolume.\arabic{chapter}}
 \newcommand{\chapter}[1]{%
   \refstepcounter{chapter}%
   \vspace{2ex}%
@@ -57,12 +66,12 @@
 % ============================
 
 % Section
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
 \titleformat{\section}[block]
   {\sectionfont}
-  {\thechapter.\arabic{section}}
+  {Section \thesection}
   {1em}{}
-\renewcommand{\thesection}{\thechapter.\arabic{section}}
-
+                       
 % Subsection
 \titleformat{\subsection}[block]
   {\subsectionfont}
@@ -103,10 +112,15 @@
 % ==============================
 % THEOREM ENVIRONMENTS
 % ==============================
-% Theorems numbered by subsubsection
-\newtheorem{definition}{Definition}[subsubsection]
-\newtheorem{proposition}{Proposition}[subsubsection]
-\newtheorem{example}{Example}[subsubsection]
+% Theorems numbered by section
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+
+% Print full number: Chapter.Section.Theorem
+\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
+\renewcommand{\theproposition}{\thesection.\arabic{proposition}}
+\renewcommand{\theexample}{\thesection.\arabic{example}}
 
 % ==============================
 % DOCUMENT
@@ -126,9 +140,9 @@
 \end{titlepage}
 
 % === PREFACES ===
-\volumeheading{1}{The Process of Production of Capital}
+\volumeheading{The Process of Production of Capital}
 
-\partheading*{Prefaces}
+\partpreface{Prefaces}
 
 \section*{1867: Marx's thank you letter to Engels}
 \section*{1867: Dedication to Wilhelm Wolff}
@@ -184,6 +198,14 @@ The common substance that manifests itself in the exchange relation of commoditi
   \item Socially necessary labour time = labour time required under normal conditions of production and with average degree of skill and intensity prevalent at the time.
 \end{itemize}
 \end{definition}
+
+\begin{example}
+1 coat = 20 yards of linen.
+\begin{itemize}[noitemsep]
+  \item Not due to physical properties of coat or linen.
+  \item Both embody equal quantities of human labour.
+\end{itemize}
+\end{example}
 
 % ==============================
 % SECTION 1.1.2
