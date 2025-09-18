@@ -29,22 +29,28 @@
 }
 
 % ============================
-% PART
+% Part heading for Preface (numberless)
 % ============================
-\newcounter{partcustom}
-\renewcommand{\thepartcustom}{\Roman{partcustom}}
-\newcommand{\partheading}[1]{%
-  \refstepcounter{partcustom}%
+\newcommand{\partpreface}[1]{%
   \vspace{2ex}%
-  {\centering \partfont Part \thepartcustom: #1\par}%
+  {\centering \partfont #1\par}% prints the heading in Part-sized font
+  \vspace{1ex}%
+}
+
+% ============================
+% PART (visual only)
+% ============================
+\newcommand{\partheading}[1]{%
+  \vspace{2ex}%
+  {\centering \partfont Part: #1\par}%
   \vspace{1ex}%
 }
 
 % ============================
 % CHAPTER
 % ============================
-\newcounter{chapter}[partcustom]
-\renewcommand{\thechapter}{\thepartcustom.\arabic{chapter}}
+\newcounter{chapter}[volume]
+\renewcommand{\thechapter}{\thevolume.\arabic{chapter}}
 \newcommand{\chapter}[1]{%
   \refstepcounter{chapter}%
   \vspace{2ex}%
@@ -126,9 +132,9 @@
 \end{titlepage}
 
 % === PREFACES ===
-\volumeheading{1}{The Process of Production of Capital}
+\volumeheading{The Process of Production of Capital}
 
-\partheading*{Prefaces}
+\partpreface{Prefaces}
 
 \section*{1867: Marx's thank you letter to Engels}
 \section*{1867: Dedication to Wilhelm Wolff}
