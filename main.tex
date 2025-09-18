@@ -29,6 +29,15 @@
 }
 
 % ============================
+% Part heading for Preface (numberless)
+% ============================
+\newcommand{\partpreface}[1]{%
+  \vspace{2ex}%
+  {\centering \partfont #1\par}% prints the heading in Part-sized font
+  \vspace{1ex}%
+}
+
+% ============================
 % Part heading with number (independent)
 % ============================
 \newcounter{partnum}                % counter for numbered parts
@@ -37,15 +46,6 @@
   \refstepcounter{partnum}% increments part number
   \vspace{2ex}%
   {\centering \partfont Part \thepartnum: #1\par}% prints number + title
-  \vspace{1ex}%
-}
-
-% ============================
-% PART (visual only)
-% ============================
-\newcommand{\partheading}[1]{%
-  \vspace{2ex}%
-  {\centering \partfont Part: #1\par}%
   \vspace{1ex}%
 }
 
@@ -66,12 +66,12 @@
 % ============================
 
 % Section
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
 \titleformat{\section}[block]
   {\sectionfont}
-  {\thechapter.\arabic{section}}
+  {Section \thesection}
   {1em}{}
-\renewcommand{\thesection}{\thechapter.\arabic{section}}
-
+                       
 % Subsection
 \titleformat{\subsection}[block]
   {\subsectionfont}
