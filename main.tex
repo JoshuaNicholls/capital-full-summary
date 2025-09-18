@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{chngcntr} % for custom numbering
+
+% ==============================
+% THEOREM ENVIRONMENTS
+% ==============================
+% Theorems numbered by subsubsection
+\newtheorem{definition}{Definition}[subsubsection]
+\newtheorem{proposition}{Proposition}[subsubsection]
+\newtheorem{example}{Example}[subsubsection]
+
+% ==============================
+% CUSTOM NUMBERING
+% ==============================
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}      % e.g. 1.1
+\renewcommand\thesubsubsection{\thesubsection.\Alph{subsubsection}} % e.g. 1.1.A
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}} % e.g. 1.1.A.1
+
+% Custom commands for Marx-style manual override
+\newcommand{\customsubsubsection}[2]{%
+  \subsubsection*{#1 -- #2}%
+}
+
+\newcommand{\subsubsubsection}[1]{%
+  \refstepcounter{subsubsubsection}%
+  \paragraph{\thesubsubsubsection\quad #1}%
+}
+
+% ==============================
+% HEADINGS
+% ==============================
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\bfseries}{\thesubsubsubsection}{1em}{} 
+
+% ==============================
+% DOCUMENT
+% ==============================
+\begin{document}
+
+% === TITLE PAGE ===
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries Capital: A Critique of Political Economy \par}
+  \vspace{1cm}
+  {\Large Karl Marx \& Friedrich Engels (1867)\par}
+  \vfill
+  {\large Summary by Joshua Nicholls\par}
+  \vspace*{2cm}
+\end{titlepage}
+
+% === PREFACES ===
+\section*{Volume 1: The Process of Production of Capital}
+
+\section*{Prefaces}
+\subsection*{1867: Marx’s thank you letter to Engels}
+\subsection*{1867: Dedication to Wilhelm Wolff}
+\subsection*{1867: Preface to the First German Edition (Marx)}
+\subsection*{Preface to the French Edition (Marx)}
+\subsection*{1873: Afterword to the Second German Edition (Marx)}
+\subsection*{1875: Afterword to the French Edition (Marx)}
+\subsection*{1883: Preface to the Third German Edition (Engels)}
+\subsection*{1886: Preface to the English Edition (Engels)}
+\subsection*{1890: Preface to the Fourth German Edition (Engels)}
+
+% === CHAPTER 1 ===
+\part{Commodities and Money}
+
+\section{Ch. 1.1: The Commodities}
+
+% ==============================
+% SECTION 1.1.1
+% ==============================
+\customsubsubsection{1.1.1A}{The Two Factors of a Commodity: Use-value and Value}
+
+\begin{definition}[Use-value]\label{def:1.1.1.1}
+The usefulness of a thing.
+\begin{itemize}[noitemsep]
+  \item Realised only in use or consumption.
+  \item Conditioned by the physical properties of the commodity.
+  \item Independent of the amount of labour required to appropriate its useful qualities.
+  \item Forms the material content of wealth, whatever its social form may be.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Exchange-value]\label{def:1.1.1.2}
+The quantitative relation in which use-values of one kind exchange for use-values of another kind.
+\begin{itemize}[noitemsep]
+  \item Appears as the proportion in which commodities exchange.
+  \item A form of appearance of an underlying value common to all commodities.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Dual Character of the Commodity]\label{prop:1.1.1.1}
+Every commodity has a dual nature:
+\begin{itemize}[noitemsep]
+  \item As a \textit{use-value}, determined by its utility.
+  \item As a \textit{value}, determined by the amount of abstract human labour embodied in it.
+\end{itemize}
+\end{proposition}
+
+\begin{definition}[Value]\label{def:1.1.1.3}
+The common substance that manifests itself in the exchange relation of commodities.
+\begin{itemize}[noitemsep]
+  \item Value is human labour in the abstract.
+  \item The magnitude of value is determined by the socially necessary labour time required for production.
+  \item Socially necessary labour time = labour time required under normal conditions of production and with average degree of skill and intensity prevalent at the time.
+\end{itemize}
+\end{definition}
+
+% ==============================
+% SECTION 1.1.2
+% ==============================
+\customsubsubsection{1.1.2B}{The Two-fold Character of the Labour Embodied in Commodities}
+
+\begin{proposition}[Two Aspects of Labour]\label{prop:1.1.2.1}
+The labour represented in commodities possesses a two-fold character:
+\begin{itemize}[noitemsep]
+  \item \textbf{Concrete labour:} Produces use-values by virtue of its particular kind.
+  \item \textbf{Abstract labour:} Creates value by virtue of being expenditure of human labour in the abstract.
+\end{itemize}
+\end{proposition}
+
+\begin{definition}[Concrete Labour]\label{def:1.1.2.1}
+Labour considered in its specific, useful form.
+\begin{itemize}[noitemsep]
+  \item Produces definite articles of use (e.g. tailoring, weaving).
+  \item Differentiated by the kind of activity, its object, its means, and its result.
+  \item Source of use-value.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Abstract Labour]\label{def:1.1.2.2}
+Labour considered as the expenditure of human labour-power in general.
+\begin{itemize}[noitemsep]
+  \item Measured in time.
+  \item Forms the substance of value.
+  \item Represents labour stripped of its concrete, useful character.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Unity of the Two Aspects]\label{prop:1.1.2.2}
+The commodity-form makes visible the two-fold character of labour:
+\begin{itemize}[noitemsep]
+  \item The commodity is simultaneously a use-value and a value.
+  \item This duality reflects the dual character of the labour embodied in it.
+\end{itemize}
+\end{proposition}
+
+\subsubsubsection{1} Example of a finer point under 1.1.2B.
+
+\end{document}
