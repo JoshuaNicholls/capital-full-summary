@@ -76,21 +76,23 @@
 \renewcommand{\thesubsection}{\thesection.\Alph{subsection}}
 \titleformat{\subsection}[block]
   {\subsectionfont}
-  {\thesubsection.\Alph{subsection}}
+  {\thesubsection}
   {1em}{}
 
 % Paragraph
+\setcounter{secnumdepth}{5}   % allow numbering down to subparagraph
 \renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
 \titleformat{\paragraph}[block]
   {\paragraphfont}
-  {\theparagraph.\arabic{paragraph}}
+  {\theparagraph}
   {1em}{}
 
 % Subparagraph
+\setcounter{secnumdepth}{5}   % allow numbering down to subparagraph
 \renewcommand{\thesubparagraph}{\theparagraph.\alph{subparagraph}}
 \titleformat{\subparagraph}[block]
-  {\subparagraphont}
-  {\thesubparagraph.\alph{subparagraph}}
+  {\subparagraphfont}
+  {\thesubparagraph}
   {1em}{}
 
 % ============================
