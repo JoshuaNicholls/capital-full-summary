@@ -12,8 +12,8 @@
 \newcommand{\chapterfont}{\fontsize{16pt}{18pt}\bfseries}
 \newcommand{\sectionfont}{\fontsize{14pt}{16pt}\bfseries}
 \newcommand{\subsectionfont}{\fontsize{12pt}{14pt}\bfseries}
-\newcommand{\subsubsectionfont}{\fontsize{11pt}{13pt}\bfseries}
-\newcommand{\subsubsubsectionfont}{\fontsize{11pt}{13pt}\itshape}
+\newcommand{\paragraphfont}{\fontsize{11pt}{13pt}\bfseries}
+\newcommand{\subparagraphfont}{\fontsize{11pt}{13pt}\itshape}
 
 
 % ============================
@@ -73,24 +73,24 @@
   {1em}{}
                        
 % Subsection
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsection}{\thesection.\Alph{subsection}}
 \titleformat{\subsection}[block]
   {\subsectionfont}
-  {\thesection.\arabic{subsection}}
+  {\thesubsection.\Alph{subsection}}
   {1em}{}
 
 % Paragraph
-\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
+\renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
 \titleformat{\paragraph}[block]
-  {\subsubsectionfont}
-  {\thesubsubsection.\arabic{paragraph}}
+  {\paragraphfont}
+  {\theparagraph.\arabic{paragraph}}
   {1em}{}
 
 % Subparagraph
-\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
+\renewcommand{\thesubparagraph}{\theparagraph.\alph{subparagraph}}
 \titleformat{\subparagraph}[block]
-  {\subsubsubsectionfont}
-  {\theparagraph.\arabic{subparagraph}}
+  {\subparagraphont}
+  {\thesubparagraph.\alph{subparagraph}}
   {1em}{}
 
 % ============================
@@ -251,7 +251,7 @@ The commodity-form makes visible the two-fold character of labour:
 
 \subsection{Elementary or Accidental Form of Value}
 
-\subsubsection{The Two Poles of Expression of Value: Relative Form and Equivalent Form}
+\paragraph{The Two Poles of Expression of Value: Relative Form and Equivalent Form}
 
 \begin{definition}[Relative Form of Value]
 The form in which the value of one commodity is expressed in terms of another commodity.
