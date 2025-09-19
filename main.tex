@@ -73,54 +73,46 @@
   {1em}{}
                        
 % Subsection
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \titleformat{\subsection}[block]
   {\subsectionfont}
   {\thesection.\arabic{subsection}}
   {1em}{}
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-
-% Subsubsection
-\titleformat{\subsubsection}[block]
-  {\subsubsectionfont}
-  {\thesubsection.\arabic{subsubsection}}
-  {1em}{}
-\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
 % Paragraph
+\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
 \titleformat{\paragraph}[block]
   {\subsubsectionfont}
   {\thesubsubsection.\arabic{paragraph}}
   {1em}{}
-\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
 
 % Subparagraph
+\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
 \titleformat{\subparagraph}[block]
   {\subsubsubsectionfont}
   {\theparagraph.\arabic{subparagraph}}
   {1em}{}
-\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
 
 % ============================
 % Spacing (optional, adjust to taste)
 % ============================
 \titlespacing*{\section}{0pt}{2ex}{1ex}
 \titlespacing*{\subsection}{0pt}{1.5ex}{0.8ex}
-\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
 \titlespacing*{\paragraph}{0pt}{1ex}{0.5ex}
 \titlespacing*{\subparagraph}{0pt}{1ex}{0.5ex}
 
 % ==============================
 % THEOREM ENVIRONMENTS
 % ==============================
-% Theorems numbered by section
-\newtheorem{definition}{Definition}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{example}{Example}[section]
+% Theorems numbered by subparagraph
+\newtheorem{definition}{Definition}[subparagraph]
+\newtheorem{proposition}{Proposition}[subparagraph]
+\newtheorem{example}{Example}[subparagraph]
 
 % Print full number: Chapter.Section.Theorem
-\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
-\renewcommand{\theproposition}{\thesection.\arabic{proposition}}
-\renewcommand{\theexample}{\thesection.\arabic{example}}
+\renewcommand{\thedefinition}{\thesubparagraph.\arabic{definition}}
+\renewcommand{\theproposition}{\thesubparagraph.\arabic{proposition}}
+\renewcommand{\theexample}{\thesubparagraph.\arabic{example}}
 
 % ==============================
 % DOCUMENT
