@@ -2,6 +2,7 @@
 \usepackage{amsthm}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{etoolbox} % for \pretocmd
 
 % ============================
 % FONT SIZES / FONTS
@@ -12,8 +13,8 @@
 \newcommand{\chapterfont}{\fontsize{16pt}{18pt}\bfseries}
 \newcommand{\sectionfont}{\fontsize{14pt}{16pt}\bfseries}
 \newcommand{\subsectionfont}{\fontsize{12pt}{14pt}\bfseries}
-\newcommand{\subsubsectionfont}{\fontsize{11pt}{13pt}\bfseries}
-\newcommand{\subsubsubsectionfont}{\fontsize{11pt}{13pt}\itshape}
+\newcommand{\paragraphfont}{\fontsize{11pt}{13pt}\bfseries}
+\newcommand{\subparagraphfont}{\fontsize{11pt}{13pt}\itshape}
 
 
 % ============================
@@ -73,54 +74,68 @@
   {1em}{}
                        
 % Subsection
+\renewcommand{\thesubsection}{\thesection.\Alph{subsection}}
 \titleformat{\subsection}[block]
   {\subsectionfont}
-  {\thesection.\arabic{subsection}}
+  {\thesubsection}
   {1em}{}
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-
-% Subsubsection
-\titleformat{\subsubsection}[block]
-  {\subsubsectionfont}
-  {\thesubsection.\arabic{subsubsection}}
-  {1em}{}
-\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
 % Paragraph
+\setcounter{secnumdepth}{5}   % allow numbering down to subparagraph
+\renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
 \titleformat{\paragraph}[block]
-  {\subsubsectionfont}
-  {\thesubsubsection.\arabic{paragraph}}
+  {\paragraphfont}
+  {\theparagraph}
   {1em}{}
-\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
 
 % Subparagraph
+\setcounter{secnumdepth}{5}   % allow numbering down to subparagraph
+\renewcommand{\thesubparagraph}{\theparagraph.\alph{subparagraph}}
 \titleformat{\subparagraph}[block]
-  {\subsubsubsectionfont}
-  {\theparagraph.\arabic{subparagraph}}
+  {\subparagraphfont}
+  {\thesubparagraph}
   {1em}{}
-\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
 
 % ============================
 % Spacing (optional, adjust to taste)
 % ============================
 \titlespacing*{\section}{0pt}{2ex}{1ex}
 \titlespacing*{\subsection}{0pt}{1.5ex}{0.8ex}
-\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
 \titlespacing*{\paragraph}{0pt}{1ex}{0.5ex}
 \titlespacing*{\subparagraph}{0pt}{1ex}{0.5ex}
 
-% ==============================
-% THEOREM ENVIRONMENTS
-% ==============================
-% Theorems numbered by section
-\newtheorem{definition}{Definition}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{example}{Example}[section]
+% --- Theorem definition (neutral base) ---
+\newtheorem{innerdef}{Definition}
+\newtheorem{innerprop}{Proposition}
+\newtheorem{innerex}{Example}
 
-% Print full number: Chapter.Section.Theorem
-\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
-\renewcommand{\theproposition}{\thesection.\arabic{proposition}}
-\renewcommand{\theexample}{\thesection.\arabic{example}}
+% Wrap them as environments
+\newenvironment{definition}{\begin{innerdef}}{\end{innerdef}}
+\newenvironment{proposition}{\begin{innerprop}}{\end{innerprop}}
+\newenvironment{example}{\begin{innerex}}{\end{innerex}}
+
+% --- Macro to reattach definition environment dynamically ---
+
+\makeatletter
+\newcommand{\theoremattach}[1]{%
+  % Definition
+  \renewcommand\theinnerdef{\csname the#1\endcsname.\arabic{innerdef}}%
+  \setcounter{innerdef}{0}%
+  % Proposition
+  \renewcommand\theinnerprop{\csname the#1\endcsname.\arabic{innerprop}}%
+  \setcounter{innerprop}{0}%
+  % Example
+  \renewcommand\theinnerex{\csname the#1\endcsname.\arabic{innerex}}%
+  \setcounter{innerex}{0}%
+}
+
+% Attach to each heading
+\pretocmd{\section}{\theoremattach{section}}{}{}
+\pretocmd{\subsection}{\theoremattach{subsection}}{}{}
+\pretocmd{\subsubsection}{\theoremattach{subsubsection}}{}{}
+\pretocmd{\paragraph}{\theoremattach{paragraph}}{}{}
+\pretocmd{\subparagraph}{\theoremattach{subparagraph}}{}{}
+\makeatother
 
 % ==============================
 % DOCUMENT
@@ -250,10 +265,31 @@ The commodity-form makes visible the two-fold character of labour:
 \end{itemize}
 \end{proposition}
 
-\subparagraph{1} Example of a finer point under 1.1.2B.
+\newpage
 
-\end{document}
+% ==============================
+% SECTION 1.1.3
+% ==============================
+\section{The Form of Value or Exchange-Value}
 
-\subparagraph{1} Example of a finer point under 1.1.2B.
+\subsection{Elementary or Accidental Form of Value}
+
+\paragraph{The Two Poles of Expression of Value: Relative Form and Equivalent Form}
+
+\begin{definition}[Relative Form of Value]
+The form in which the value of one commodity is expressed in terms of another commodity.
+\begin{itemize}[noitemsep]
+    \item Provides the basis for the social recognition of value.
+    \item Represents the “other” commodity in which value is expressed.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Equivalent Form of Value]
+The form in which a commodity serves as the equivalent for all other commodities.
+\begin{itemize}[noitemsep]
+    \item The commodity chosen to express the value of all others.
+    \item Example: historically, gold became the universal equivalent.
+\end{itemize}
+\end{definition}
 
 \end{document}
