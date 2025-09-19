@@ -2,6 +2,7 @@
 \usepackage{amsthm}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{etoolbox} % for \pretocmd
 
 % ============================
 % FONT SIZES / FONTS
@@ -103,18 +104,38 @@
 \titlespacing*{\paragraph}{0pt}{1ex}{0.5ex}
 \titlespacing*{\subparagraph}{0pt}{1ex}{0.5ex}
 
-% ==============================
-% THEOREM ENVIRONMENTS
-% ==============================
-% Theorems numbered by subparagraph
-\newtheorem{definition}{Definition}[subparagraph]
-\newtheorem{proposition}{Proposition}[subparagraph]
-\newtheorem{example}{Example}[subparagraph]
+% --- Theorem definition (neutral base) ---
+\newtheorem{innerdef}{Definition}
+\newtheorem{innerprop}{Proposition}
+\newtheorem{innerex}{Example}
 
-% Print full number: Chapter.Section.Theorem
-\renewcommand{\thedefinition}{\thesubparagraph.\arabic{definition}}
-\renewcommand{\theproposition}{\thesubparagraph.\arabic{proposition}}
-\renewcommand{\theexample}{\thesubparagraph.\arabic{example}}
+% Wrap them as environments
+\newenvironment{definition}{\begin{innerdef}}{\end{innerdef}}
+\newenvironment{proposition}{\begin{innerprop}}{\end{innerprop}}
+\newenvironment{example}{\begin{innerex}}{\end{innerex}}
+
+% --- Macro to reattach definition environment dynamically ---
+
+\makeatletter
+\newcommand{\theoremattach}[1]{%
+  % Definition
+  \renewcommand\theinnerdef{\csname the#1\endcsname.\arabic{innerdef}}%
+  \setcounter{innerdef}{0}%
+  % Proposition
+  \renewcommand\theinnerprop{\csname the#1\endcsname.\arabic{innerprop}}%
+  \setcounter{innerprop}{0}%
+  % Example
+  \renewcommand\theinnerex{\csname the#1\endcsname.\arabic{innerex}}%
+  \setcounter{innerex}{0}%
+}
+
+% Attach to each heading
+\pretocmd{\section}{\theoremattach{section}}{}{}
+\pretocmd{\subsection}{\theoremattach{subsection}}{}{}
+\pretocmd{\subsubsection}{\theoremattach{subsubsection}}{}{}
+\pretocmd{\paragraph}{\theoremattach{paragraph}}{}{}
+\pretocmd{\subparagraph}{\theoremattach{subparagraph}}{}{}
+\makeatother
 
 % ==============================
 % DOCUMENT
