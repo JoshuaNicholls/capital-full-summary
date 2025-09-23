@@ -3,6 +3,7 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{etoolbox} % for \pretocmd
+\usepackage{chngcntr}
 
 % ============================
 % FONT SIZES / FONTS
@@ -65,6 +66,9 @@
 % ============================
 % SECTION => SUBPARAGRAPH
 % ============================
+
+% Reset section at each new chapter
+\counterwithin{section}{chapter}
 
 % Section
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
