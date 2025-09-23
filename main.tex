@@ -104,7 +104,8 @@
 \titlespacing*{\paragraph}{0pt}{4ex}{3ex}
 \titlespacing*{\subparagraph}{0pt}{3ex}{2ex}
 
-% --- Theorem definition (neutral base) ---
+% --- Theorem definition ---
+% Neutral base
 \newtheorem{innerdef}{Definition}
 \newtheorem{innerprop}{Proposition}
 \newtheorem{innerex}{Example}
@@ -133,14 +134,14 @@
   \renewcommand\theinnerremark{\csname the#1\endcsname.\arabic{innerremark}}%
   \setcounter{innerremark}{0}%
 }
+\makeatother
 
 % Attach to each heading
+\pretocmd{\chapter}{\theoremattach{chapter}}{}{}
 \pretocmd{\section}{\theoremattach{section}}{}{}
 \pretocmd{\subsection}{\theoremattach{subsection}}{}{}
-\pretocmd{\subsubsection}{\theoremattach{subsubsection}}{}{}
 \pretocmd{\paragraph}{\theoremattach{paragraph}}{}{}
 \pretocmd{\subparagraph}{\theoremattach{subparagraph}}{}{}
-\makeatother
 
 % ==============================
 % DOCUMENT
@@ -505,6 +506,59 @@ concrete labour creates use-values, while abstract labour creates value.
 \begin{remark}
 By grasping this duality, the apparent mystery of commodities is resolved: 
 value is nothing but congealed human labour.
+\end{remark}
+
+\chapter{The Process of Exchange} % I.2
+
+\begin{definition}[Commodity Owners]
+Commodities exist only as the products of private labour, and 
+their owners confront one another as independent private persons. 
+These owners recognize each other as the exclusive proprietors of 
+their commodities.
+\end{definition}
+
+\begin{proposition}[Social Relation through Exchange]
+Although labour is private in the production of commodities, 
+it becomes social only through the act of exchange. 
+The exchange relation is the concrete expression of 
+this social character.
+\end{proposition}
+
+\begin{definition}[Personification of Commodities]
+In exchange, the owners of commodities act merely as the personifications 
+of their commodities. Their wills are subordinate to the economic 
+relation of exchange.
+\end{definition}
+
+\begin{remark}
+The legal form of property and contract masks the underlying 
+economic compulsion: individuals must recognize each other as 
+owners in order for exchange to occur.
+\end{remark}
+
+\begin{definition}[Exchange Equivalence]
+The act of exchange presupposes that commodities can be 
+expressed as equivalents; however, this equivalence is mediated 
+through the relation to a universal equivalent.
+\end{definition}
+
+\begin{proposition}[Necessity of a Universal Equivalent]
+Direct barter cannot adequately express the value of commodities 
+in a consistent and universal way. Therefore, exchange 
+necessitates the development of a single commodity that 
+functions as a general equivalent.
+\end{proposition}
+
+\begin{definition}[Money as Universal Equivalent]
+Money arises as the commodity that has assumed the exclusive 
+function of being the general equivalent form of value. 
+It serves as the universal mediator of exchange.
+\end{definition}
+
+\begin{remark}
+The emergence of money is not an external invention but a 
+necessary outgrowth of the contradictions and requirements 
+of commodity exchange itself.
 \end{remark}
 
 \end{document}
