@@ -104,7 +104,8 @@
 \titlespacing*{\paragraph}{0pt}{4ex}{3ex}
 \titlespacing*{\subparagraph}{0pt}{3ex}{2ex}
 
-% --- Theorem definition (neutral base) ---
+% --- Theorem definition ---
+% Neutral base
 \newtheorem{innerdef}{Definition}
 \newtheorem{innerprop}{Proposition}
 \newtheorem{innerex}{Example}
@@ -133,14 +134,14 @@
   \renewcommand\theinnerremark{\csname the#1\endcsname.\arabic{innerremark}}%
   \setcounter{innerremark}{0}%
 }
+\makeatother
 
 % Attach to each heading
+\pretocmd{\chapter}{\theoremattach{chapter}}{}{}
 \pretocmd{\section}{\theoremattach{section}}{}{}
 \pretocmd{\subsection}{\theoremattach{subsection}}{}{}
-\pretocmd{\subsubsection}{\theoremattach{subsubsection}}{}{}
 \pretocmd{\paragraph}{\theoremattach{paragraph}}{}{}
 \pretocmd{\subparagraph}{\theoremattach{subparagraph}}{}{}
-\makeatother
 
 % ==============================
 % DOCUMENT
